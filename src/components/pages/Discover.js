@@ -1,47 +1,55 @@
-import React from "react";
+import React, {Component} from "react";
+import API from "../../utils/API";
+import PupCard from "../PupCard";
 
-// class Discover extends Component {
-//   render () {
-//     return (
-//       <main className="wrapper">
-//         <div>
-//           <h1>
-//             Make New Friends
-//           </h1>
-//           <h2>
-//             Thumbs up on any pups you'd like to meet!
-//           </h2>
-//           <div>
+class Discover extends Component {
+  // Setting initial state of the "matched" dogs counter
+  state = {
+    currentPup: "",
+    count: 0
+  };
 
-//           </div>
-//           <h1>
-//             Made friends with 
-//           </h1>
-//         </div>
-//       </main>
-//     );
-//   }
-// }
+  handleMatchMaking = () => {
+    // returns a random integer from 1 to 5
+    if ((Math.floor(Math.random() * 10) + 1) === 5) {
+      this.setState({ count: this.state.count + 1});
+    }
+    this.loadPupPic();
+  }
 
-const Discover = () => {
-  return (
-    <main className="wrapper">
-      <div>
-        <h1>
-          Make New Friends
-        </h1>
-        <h2>
-          Thumbs up on any pups you'd like to meet!
-        </h2>
+  loadPupPic = () => {
+    API.search().then(res => this.setState({ currentPup: res.data.message }))
+    .catch(err => console.log(err));
+  }
+
+  // When this component mounts, a random dog pic will be loaded
+  componentDidMount() {
+    this.loadPupPic();
+  }
+
+  render () {
+    return (
+      <main className="wrapper">
         <div>
-
+        {/*console.log(this.pupPic)*/}
+          <h1>
+            Make New Friends
+          </h1>
+          <h2>
+            Thumbs up on any pups you'd like to meet!
+          </h2>
+          <PupCard
+            currentPup={this.state.currentPup}
+            handleMatchMaking={this.handleMatchMaking}
+            handlePupChange={this.loadPupPic}
+          />
+          <h1>
+            Made friends with {this.state.count} pups so far!
+          </h1>
         </div>
-        <h1>
-          Made friends with 
-        </h1>
-      </div>
-    </main>
-  )
+      </main>
+    );
+  }
 }
 
 export default Discover
