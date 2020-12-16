@@ -1,8 +1,8 @@
 import React, {Component} from "react";
-import NavTabs from "./NavTabs";
-import About from "./pages/About";
-import Discover from "./pages/Discover";
-import Search from "./pages/Search";
+import NavTabs from "../NavTabs/NavTabs";
+import About from "../../pages/About";
+import Discover from "../../pages/Discover";
+import Search from "../../pages/Search";
 
 class Pupster extends Component {
   state = {

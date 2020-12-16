@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import API from "../../utils/API";
-import PupCard from "../PupCard";
-import MatchAlert from "../MatchAlert";
+import API from "../utils/API";
+import PupCard from "../components/PupCard/PupCard";
+import MatchAlert from "../components/MatchAlert/MatchAlert";
 
 class Discover extends Component {
   // Setting initial state of the "matched" dogs counter
@@ -22,7 +22,8 @@ class Discover extends Component {
   loadPupPic = () => {
     this.setState({matched:false});
 
-    API.search().then(res => this.setState({ currentPup: res.data.message }))
+    API.search("breeds/image/random")
+    .then(res => this.setState({ currentPup: res.data.message }))
     .catch(err => console.log(err));
   }
 
@@ -31,7 +32,7 @@ class Discover extends Component {
     this.loadPupPic();
   }
 
-  render () {
+  render() {
     return (
       <main className="wrapper">
         <div>

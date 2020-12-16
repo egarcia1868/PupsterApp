@@ -3,7 +3,7 @@ import React from "react";
 const NavTabs = (props) => {
   return (
     <ul className="nav nav-tabs">
-      <li className="navbar-brand">
+      <li className="navbar-brand" style={{paddingLeft:"1%"}}>
   {/* I see repeated code here.  I believe I can simplify this later on  */}
         <a
           href="#about"
