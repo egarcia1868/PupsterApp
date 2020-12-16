@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import NavTabs from "../NavTabs/NavTabs";
+import NavTabs from "../NavTabs";
 import About from "../../pages/About";
 import Discover from "../../pages/Discover";
 import Search from "../../pages/Search";
@@ -14,9 +14,8 @@ class Pupster extends Component {
   };
 
   renderPage = () => {
+    // This will generate the appropriate page based on what the state.currentPage is currently
     switch(this.state.currentPage) {
-      // case "About":
-      //   return <About />;
       case "Discover":
         return <Discover />;
       case "Search":

@@ -1,5 +1,5 @@
 import React from "react";
-import PupsterContainer from "./components/PupsterContainer/PupsterContainer";
+import PupsterContainer from "./components/PupsterContainer";
 
 const App = () => <PupsterContainer />;
 

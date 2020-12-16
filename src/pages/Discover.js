@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import API from "../utils/API";
-import PupCard from "../components/PupCard/PupCard";
-import MatchAlert from "../components/MatchAlert/MatchAlert";
+import PupCard from "../components/PupCard";
+import MatchAlert from "../components/MatchAlert";
 
 class Discover extends Component {
   // Setting initial state of the "matched" dogs counter
