@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import API from "../utils/API";
 import PupCard from "../components/PupCard";
-import MatchAlert from "../components/MatchAlert";
+import Alert from "../components/Alert";
 
 class Discover extends Component {
   // Setting initial state of the "matched" dogs counter
@@ -52,15 +52,10 @@ class Discover extends Component {
             Made friends with {this.state.count} pups so far!
           </h1>
           <div>
-          {this.state.matched ? (
-            <MatchAlert 
-            visible={1}
+            <Alert 
+              type="success"
+              style={{ opacity: this.state.matched ? 1 : 0 }}
             />
-          ):(
-            <MatchAlert 
-            visible={0}
-            />
-          )}
           </div>
         </div>
       </main>
