@@ -10,7 +10,7 @@ class Search extends Component {
     result: [],
     search: "",
     error: "",
-    breeds: []
+    breeds: [],
   }
 
   handleInputChange = event => {
