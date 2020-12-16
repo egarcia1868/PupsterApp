@@ -51,12 +51,9 @@ class Discover extends Component {
           <h1>
             Made friends with {this.state.count} pups so far!
           </h1>
-          <div>
-            <Alert 
-              type="success"
-              style={{ opacity: this.state.matched ? 1 : 0 }}
-            />
-          </div>
+          <Alert type="success" style={{ opacity: this.state.matched ? 1 : 0 }}>
+            Yay! That Pup Liked You Too!!!
+          </Alert>
         </div>
       </main>
     );
