@@ -7,7 +7,7 @@ import Alert from "../components/Alert";
 class Search extends Component {
   
   state = {
-    result: {},
+    result: [],
     search: "",
     error: ""
   }
@@ -46,8 +46,9 @@ class Search extends Component {
               handleFormSubmit={this.handleFormSubmit}
               autoComplete={this.state.result.keys}
             />
+            {console.log(this.state.result)}
             <SearchResults 
-              SearchResults={this.state.result}
+              searchResults={this.state.result}
             />
           </div>
         </div>
