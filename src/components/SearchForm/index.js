@@ -10,12 +10,17 @@ const SearchForm = (props) => {
           onChange={props.handleInputChange}
           value={props.value}
           name="search"
+          list="breeds"
           type="text"
           className="form-control"
           placeholder="Type in a dog breed to begin"
           id="search"
         />
-        <br />
+        <datalist id="breeds">
+          {Object.keys(props.breeds).map(breed => (
+            <option value={breed} key={breed} />
+          ))}
+        </datalist>
         <button style={{float: "right"}} onClick={props.handleFormSubmit} className="btn btn-success">
           Search
         </button>

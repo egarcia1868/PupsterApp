@@ -9,7 +9,8 @@ class Search extends Component {
   state = {
     result: [],
     search: "",
-    error: ""
+    error: "",
+    breeds: []
   }
 
   handleInputChange = event => {
@@ -29,6 +30,15 @@ class Search extends Component {
     .catch(err => this.setState({error: err.message}));
   }
 
+  //When the component mounts this will get our list of breeds
+  componentDidMount() {
+    API.search("breeds/list/all")
+    .then(res => {
+      this.setState({ breeds: res.data.message})
+    })
+    .catch(err => console.log(err))
+  }
+
   render() {
     return (
       <main className="wrapper">
@@ -44,9 +54,8 @@ class Search extends Component {
               value={this.state.search}
               handleInputChange={this.handleInputChange}
               handleFormSubmit={this.handleFormSubmit}
-              autoComplete={this.state.result.keys}
+              breeds={this.state.breeds}
             />
-            {console.log(this.state.result)}
             <SearchResults 
               searchResults={this.state.result}
             />
