@@ -1,15 +1,16 @@
 import React from "react";
+import "./style.css";
 
-const SearchResults = (props) => {
+function SearchResults(props) {
   return (
-    <ul style={{marginTop:"2%"}} className="list-group search-results text-center">
-      {props.searchResults.map( dog =>
-        <li className="list-group-item" key={dog}>
-          <img style={{maxWidth: "100%"}} src={dog} alt="" />
+    <ul className="list-group search-results">
+      {props.results.map(result => (
+        <li key={result} className="list-group-item">
+          <img alt="Dog" src={result} className="img-fluid" />
         </li>
-      )}
+      ))}
     </ul>
-  )
+  );
 }
 
-export default SearchResults
+export default SearchResults;
