@@ -1,59 +1,67 @@
-import React, { Component } from "react";
-import API from "../utils/API";
-import Container from "../components/Container";
+import React, {Component} from "react";
 import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
+import API from "../utils/API";
 import Alert from "../components/Alert";
 
 class Search extends Component {
+  
   state = {
+    result: [],
     search: "",
+    error: "",
     breeds: [],
-    results: [],
-    error: ""
-  };
-
-  // When the component mounts, get a list of all available base breeds and update this.state.breeds
-  componentDidMount() {
-    API.getBaseBreedsList()
-      .then(res => this.setState({ breeds: res.data.message }))
-      .catch(err => console.log(err));
   }
 
   handleInputChange = event => {
-    this.setState({ search: event.target.value });
-  };
+    const value = event.target.value;
+    this.setState({ search: value })
+  }
 
   handleFormSubmit = event => {
     event.preventDefault();
-    API.getDogsOfBreed(this.state.search)
-      .then(res => {
-        if (res.data.status === "error") {
-          throw new Error(res.data.message);
-        }
-        this.setState({ results: res.data.message, error: "" });
-      })
-      .catch(err => this.setState({ error: err.message }));
-  };
+    API.search("breed/"+this.state.search+"/images")
+    .then(res => { 
+      if (res.data.status === "error") {
+        throw new Error(res.data.message);
+      }
+      this.setState({ result: res.data.message, error: ""})
+    })
+    .catch(err => this.setState({error: err.message}));
+  }
+
+  //When the component mounts this will get our list of breeds
+  componentDidMount() {
+    API.search("breeds/list/all")
+    .then(res => {
+      this.setState({ breeds: res.data.message})
+    })
+    .catch(err => console.log(err))
+  }
+
   render() {
     return (
-      <div>
-        <Container style={{ minHeight: "80%" }}>
-          <h1 className="text-center">Search By Breed!</h1>
-          <Alert
-            type="danger"
-            style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}
-          >
-            {this.state.error}
-          </Alert>
-          <SearchForm
-            handleFormSubmit={this.handleFormSubmit}
-            handleInputChange={this.handleInputChange}
-            breeds={this.state.breeds}
-          />
-          <SearchResults results={this.state.results} />
-        </Container>
-      </div>
+      <main className="wrapper">
+        <div className="container">
+          <div className="row">
+            <h1 className="col-12 text-center">
+              Search By Breed!
+            </h1>
+            <Alert type="danger" style={{ opacity: this.state.error ? 1 : 0 }}>
+              {this.state.error}
+            </Alert>
+            <SearchForm 
+              value={this.state.search}
+              handleInputChange={this.handleInputChange}
+              handleFormSubmit={this.handleFormSubmit}
+              breeds={this.state.breeds}
+            />
+            <SearchResults 
+              searchResults={this.state.result}
+            />
+          </div>
+        </div>
+      </main>
     );
   }
 }

@@ -1,15 +1,11 @@
 import React from "react";
 
-function Alert(props) {
+const MatchAlert = (props) => {
   return (
-    <div
-      role="alert"
-      className={`alert alert-${props.type} fade in`}
-      style={{ width: "80%", margin: "0 auto", marginTop: 18, ...props.style }}
-    >
+    <div className={`alert alert-${props.type} fade in`} style={{ width: "80%", margin: "18px auto 0px", ...props.style }}>
       {props.children}
     </div>
-  );
+  )
 }
 
-export default Alert;
+export default MatchAlert;
