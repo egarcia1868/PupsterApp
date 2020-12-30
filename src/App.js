@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import PupsterContainer from "./components/PupsterContainer";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavTabs from "./components/NavTabs";
 import About from "./pages/About";
