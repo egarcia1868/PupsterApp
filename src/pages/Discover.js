@@ -14,7 +14,7 @@ class Discover extends Component {
   handleMatchMaking = () => {
     this.loadPupPic();
     // returns a random integer from 1 to 5
-    if ((Math.floor(Math.random() * 5) + 1) === 1) {
+    if ((Math.floor(Math.random() * 3) + 1) === 1) {
       this.setState({ count: this.state.count + 1, matched: true});
     };
   }
